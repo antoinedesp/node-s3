@@ -1,0 +1,23 @@
+extends layout
+
+block content
+  .container.mt-4
+    .card
+      .card-header Categories
+      .card-body
+        table.table.table-hover
+          thead
+            tr
+              th(scope="col") ID
+              th(scope="col") Name
+              th(scope="col") Actions
+          tbody
+            each category in categories
+              tr
+                td #{category.id}
+                td #{category.name}
+                td
+                  a.btn.btn-primary.btn-sm(href=`/category/${category.id}/edit`) Edit
+                  form.d-inline-block(action=`/category/${category.id}`, method="POST")
+                    input(type="hidden", name="_method", value="DELETE")
+                    button.btn.btn-danger.btn-sm(type="submit") Delete

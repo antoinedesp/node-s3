@@ -1,0 +1,22 @@
+extends ../layout
+
+block content
+  .container.mt-4
+    .card
+      .card-header Add Furniture
+      .card-body
+        form(action="/furniture", method="POST")
+          .mb-3
+            label(for="name" class="form-label") Name
+            input#name.form-control(type="text", name="name", required)
+          .mb-3
+            label(for="category" class="form-label") Category
+            select#category.form-select(name="categoryId")
+              each category in categories
+                option(value=category.id) #{category.name}
+          // Input for new category name
+          .mb-3
+            label(for="newCategory" class="form-label") New Category
+            input#newCategory.form-control(type="text", name="newCategory")
+
+          button.btn.btn-primary(type="submit") Add Furniture

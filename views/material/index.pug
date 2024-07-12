@@ -1,0 +1,22 @@
+extends ../layout
+
+block content
+  .container.mt-4
+    .card
+      .card-header Materials
+      .card-body
+        table.table.table-hover
+          thead
+            tr
+              th(scope="col") ID
+              th(scope="col") Name
+              th(scope="col") Actions
+          tbody
+            each material in materials
+              tr
+                td #{material.id}
+                td #{material.name}
+                td
+                  a.btn.btn-primary.btn-sm(href=`/material/${material.id}/edit`) Edit
+                  form.d-inline-block(action=`/material/${material.id}/delete`, method="POST")
+                    button.btn.btn-danger.btn-sm(type="submit") Delete

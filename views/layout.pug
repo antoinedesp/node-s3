@@ -1,0 +1,38 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    title App
+    link(rel="stylesheet", href="/css/bootstrap.min.css")
+  body
+    header
+      nav.navbar.navbar-expand-lg.navbar-light.bg-light
+        .container-fluid
+          a.navbar-brand(href="/dashboard") App
+          button.navbar-toggler(type="button", data-bs-toggle="collapse", data-bs-target="#navbarNav", aria-controls="navbarNav", aria-expanded="false", aria-label="Toggle navigation")
+            span.navbar-toggler-icon
+          #navbarNav.collapse.navbar-collapse
+            ul.navbar-nav.ms-auto
+              if isAuthenticated
+                each section in ['Furniture', 'Material', 'Supplier']
+                  li.nav-item.dropdown
+                    a.nav-link.dropdown-toggle(href="#", id=`navbarDropdown${section}`, role="button", data-bs-toggle="dropdown", aria-expanded="false")
+                      = section
+                    ul.dropdown-menu(aria-labelledby=`navbarDropdown${section}`)
+                      li
+                        a.dropdown-item(href=`/${section.toLowerCase()}`) Index
+                      li
+                        a.dropdown-item(href=`/${section.toLowerCase()}/add`) Add
+                li.nav-item
+                  a.nav-link(href=`/auth/logout`) Logout
+              else
+                li.nav-item
+                  a.nav-link(href="/auth/login") Login
+                li.nav-item
+                  a.nav-link(href="/auth/register") Register
+
+    block content
+
+    script(src="/js/bootstrap.bundle.min.js")
+    script(src="/js/script.js")

@@ -1,0 +1,12 @@
+extends ../layout
+
+block content
+  .container.mt-4
+    .card
+      .card-header Add Supplier
+      .card-body
+        form(action="/supplier", method="POST")
+          .mb-3
+            label(for="name" class="form-label") Name
+            input#name.form-control(type="text", name="name", required)
+          button.btn.btn-primary(type="submit") Add Supplier

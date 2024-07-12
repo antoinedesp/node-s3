@@ -1,0 +1,46 @@
+extends layout
+
+block content
+  .container.mt-4
+    h1 Dashboard
+    .row
+      .col-md-6.mb-4
+        .card
+          .card-header Total Counts
+          .card-body
+            #chart-container1
+
+      .col-md-6.mb-4
+        .card
+          .card-header Materials, Suppliers, Users
+          .card-body
+            #chart-container2
+
+    .row
+      .col-md-6.mb-4
+        .card
+          .card-header Recent Furniture
+          .card-body
+            ul.list-group
+              each furniture in recentFurniture
+                li.list-group-item= furniture.name
+
+      .col-md-6.mb-4
+        .card
+          .card-header Furniture Count by Category
+          .card-body
+            #chart-container3
+
+  script(src="https://cdn.jsdelivr.net/npm/apexcharts")
+  script.
+    var options1 = !{chartOptions};
+    var chart1 = new ApexCharts(document.querySelector("#chart-container1"), options1);
+    chart1.render();
+
+    var options2 = !{donutOptions};
+    var chart2 = new ApexCharts(document.querySelector("#chart-container2"), options2);
+    chart2.render();
+
+    var options3 = !{categoryOptions};
+    var chart3 = new ApexCharts(document.querySelector("#chart-container3"), options3);
+    chart3.render();

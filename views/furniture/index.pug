@@ -1,0 +1,24 @@
+extends ../layout
+
+block content
+  .container.mt-4
+    .card
+      .card-header Furnitures
+      .card-body
+        table.table.table-hover
+          thead
+            tr
+              th(scope="col") ID
+              th(scope="col") Name
+              th(scope="col") Category
+              th(scope="col") Actions
+          tbody
+            each furniture in furnitures
+              tr
+                td #{furniture.id}
+                td #{furniture.name}
+                td #{furniture.category.name}
+                td
+                  a.btn.btn-primary.btn-sm(href=`/furniture/${furniture.id}/edit`) Edit
+                  form.d-inline-block(action=`/furniture/${furniture.id}/delete`, method="POST")
+                    button.btn.btn-danger.btn-sm(type="submit") Delete

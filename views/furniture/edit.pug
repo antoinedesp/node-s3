@@ -1,0 +1,18 @@
+extends ../layout
+
+block content
+  .container.mt-4
+    .card
+      .card-header Edit Furniture
+      .card-body
+        form(action=`/furniture/${furniture.id}`, method="POST")
+          input(type="hidden", name="_method", value="PUT")
+          .mb-3
+            label(for="name" class="form-label") Name
+            input#name.form-control(type="text", name="name", value=furniture.name, required)
+          .mb-3
+            label(for="category" class="form-label") Category
+            select#category.form-select(name="category", required)
+              each category in categories
+                option(value=category.id, selected=furniture.categoryId==category.id) #{category.name}
+          button.btn.btn-primary(type="submit") Save Changes

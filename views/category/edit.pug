@@ -1,0 +1,13 @@
+extends layout
+
+block content
+  .container.mt-4
+    .card
+      .card-header Edit Category
+      .card-body
+        form(action=`/category/${category.id}`, method="POST")
+          input(type="hidden", name="_method", value="PUT")
+          .mb-3
+            label(for="name" class="form-label") Name
+            input#name.form-control(type="text", name="name", value=category.name, required)
+          button.btn.btn-primary(type="submit") Save Changes

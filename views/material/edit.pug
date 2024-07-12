@@ -1,0 +1,18 @@
+extends ../layout
+
+block content
+  .container.mt-4
+    .card
+      .card-header Edit Material
+      .card-body
+        form(action=`/material/${material.id}/edit`, method="POST")
+          .mb-3
+            label(for="name" class="form-label") Name
+            input#name.form-control(type="text", name="name", value=material.name, required)
+          .mb-3
+            label(for="supplierId" class="form-label") Supplier
+            select#supplierId.form-select(name="supplierId", required)
+              each supplier in suppliers
+                option(value=supplier.id, selected=material.supplierId === supplier.id ? 'selected' : '')= `${supplier.name} ${material.supplierId === supplier.id ? '✅' : ''}`
+          .mb-3
+            button.btn.btn-primary(type="submit") Save Changes

@@ -1,0 +1,23 @@
+extends layout
+
+block content
+  .container.mt-4
+    .card
+      .card-header Keywords
+      .card-body
+        table.table.table-hover
+          thead
+            tr
+              th(scope="col") ID
+              th(scope="col") Name
+              th(scope="col") Actions
+          tbody
+            each keyword in keywords
+              tr
+                td #{keyword.id}
+                td #{keyword.name}
+                td
+                  a.btn.btn-primary.btn-sm(href=`/keyword/${keyword.id}/edit`) Edit
+                  form.d-inline-block(action=`/keyword/${keyword.id}`, method="POST")
+                    input(type="hidden", name="_method", value="DELETE")
+                    button.btn.btn-danger.btn-sm(type="submit") Delete
